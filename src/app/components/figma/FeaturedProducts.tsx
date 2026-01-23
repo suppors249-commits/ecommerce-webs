@@ -1,4 +1,5 @@
 import { Eye, Heart, ShoppingCart } from "lucide-react";
+import { useShop } from "@/context/ShopContext";
 
 const featuredProducts = [
   {
@@ -52,6 +53,8 @@ const featuredProducts = [
 ];
 
 export default function FeaturedProducts() {
+  const { addToCart } = useShop();
+
   return (
     <section className="py-10">
       <div className="container mx-auto px-4">
@@ -64,7 +67,10 @@ export default function FeaturedProducts() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {featuredProducts.map((product) => (
-            <div key={product.id} className="group relative overflow-hidden rounded-xl">
+            <div
+              key={product.id}
+              className="group relative overflow-hidden rounded-xl"
+            >
               {/* صور المنتج */}
               <div className="relative h-96 w-full">
                 <img
@@ -78,15 +84,31 @@ export default function FeaturedProducts() {
                   className="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 />
 
-                {/* أيقونات تظهر عند hover أو touch */}
+                {/* أيقونات hover */}
                 <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/20 opacity-0 group-hover:opacity-100 transition">
                   <button className="text-white">
                     <Eye size={18} />
                   </button>
+
                   <button className="text-white">
                     <Heart size={18} />
                   </button>
-                  <button className="text-white">
+
+                  {/* زر السلة */}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart({
+                        id: product.id.toString(),
+                        name: product.name,
+                        price: product.price,
+                        image: product.image1,
+                        category: "Skincare",
+                        quantity: 1,
+                      });
+                    }}
+                    className="text-white hover:scale-110 transition"
+                  >
                     <ShoppingCart size={18} />
                   </button>
                 </div>
@@ -100,7 +122,9 @@ export default function FeaturedProducts() {
 
               {/* الاسم والسعر */}
               <div className="pt-3 text-center">
-                <span className="text-orange-500 font-semibold">${product.price}</span>
+                <span className="text-orange-500 font-semibold">
+                  ${product.price}
+                </span>
                 <h3 className="mt-1 font-medium">{product.name}</h3>
               </div>
             </div>

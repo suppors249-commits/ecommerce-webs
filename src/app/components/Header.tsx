@@ -1,82 +1,97 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart, User, Menu, X } from 'lucide-react';
-import { useShop } from '@/context/ShopContext';
+import { Search, X } from 'lucide-react';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { products } from '@/data/products';
+import { useLanguage } from '@/context/LanguageContext';
+
 
 export function Header() {
-  const { getCartCount } = useShop();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [language, setLanguage] = useState<'en' | 'ar'>('en'); // لغة الموقع
+
+  const translations = {
+    en: {
+      searchPlaceholder: "Search products...",
+      logo: "VELORA",
+      noResults: "No products found"
+    },
+    ar: {
+      searchPlaceholder: "ابحث عن المنتجات...",
+      logo: "فيلورا",
+      noResults: "لا توجد منتجات"
+    }
+  };
+
+  const t = translations[language];
+
+  const filteredProducts = products.filter(p =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur">
-      <div className="container mx-auto px-2 md:px-4">
-        <div className="flex h-16 items-center justify-between w-full">
+    
+   <header className="sticky top-0 z-90 w-full border-b bg-card/100 backdrop-blur text-[#154734]">
+  <div className="container mx-auto px-5 md:px-2 flex items-center justify-between h-11 ">
 
-          {/* Menu على الشمال */}
-          <button
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+    {/* الشمال: زر تغيير اللغة */}
 
-          {/* Logo في الوسط */}
-        <Link
-  to="/"
-  className="mx-auto text-lg md:text-xl font-semibold tracking-tight text-[#c4a682]"
->
-  VELORA
-</Link>
+    {/* الوسط: اللوجو */}
+    <Link to="/" className="text-lg md:text-xl font-semibold tracking-tight">
+      {t.logo}
+    </Link>
 
+    {/* اليمين: أيقونة البحث */}
+    <div>
+      <button
+        onClick={() => setSearchOpen(!searchOpen)}
+        className="p-2 rounded-full hover:bg-gray-200 transition-colors"
+      >
+        <Search className="h-5 w-5" />
+      </button>
+    </div>
+  </div>
 
-          {/* Cart و Profile على اليمين */}
-          <div className="flex items-center space-x-3 md:space-x-4">
-            <Link to="/cart" className="relative hover:text-accent-foreground transition-colors">
-              <ShoppingCart className="h-5 w-5 md:h-6 md:w-6" />
-              {getCartCount() > 0 && (
-                <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-accent-foreground text-[10px] text-white">
-                  {getCartCount()}
-                </span>
-              )}
-            </Link>
-            <Link to="/profile" className="hover:text-accent-foreground transition-colors">
-              <User className="h-5 w-5 md:h-6 md:w-6" />
-            </Link>
-          </div>
+  {/* خانة البحث */}
+  {searchOpen && (
+    <div className="container mx-auto px-5 py-4 bg-white border-b relative text-black">
+      {/* زر X للإغلاق */}
+      <button
+        onClick={() => { setSearchOpen(false); setSearchTerm(''); }}
+        className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-200 transition-colors"
+      >
+        <X className="h-5 w-5" />
+      </button>
 
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder={t.searchPlaceholder}
+        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c4a682]"
+      />
+
+      {searchTerm && (
+        <div className="mt-2 max-h-60 overflow-y-auto border rounded-lg bg-white text-black">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map(p => (
+              <Link
+                key={p.id}
+                to={`/product/${p.id}`}
+                className="block px-4 py-2 hover:bg-gray-100"
+                onClick={() => setSearchOpen(false)}
+              >
+                {p.name}
+              </Link>
+            ))
+          ) : (
+            <div className="px-4 py-2 text-gray-500">{t.noResults}</div>
+          )}
         </div>
-      </div>
+      )}
+    </div>
+  )}
+</header>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t"
-          >
-            <nav className="container mx-auto px-2 py-4 flex flex-col space-y-3">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-sm hover:text-accent-foreground transition-colors">
-                Home
-              </Link>
-              <Link to="/shop" onClick={() => setMobileMenuOpen(false)} className="text-sm hover:text-accent-foreground transition-colors">
-                Shop
-              </Link>
-              <Link to="/categories" onClick={() => setMobileMenuOpen(false)} className="text-sm hover:text-accent-foreground transition-colors">
-                Categories
-              </Link>
-              <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-sm hover:text-accent-foreground transition-colors">
-                About
-              </Link>
-              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-sm hover:text-accent-foreground transition-colors">
-                Contact
-              </Link>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
   );
 }

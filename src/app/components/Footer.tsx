@@ -1,33 +1,70 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-muted mt-20">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand */}
+    <footer className="bg-muted mt-12" style={{ backgroundColor: "#f2f9f5" }}>
+      <div className="container mx-auto px-4 py-8 overflow-visible">
+ {/* Brand Section */}
+        <div className="text-2 mb-8 ">
+          <h3 className="text-[#154734] font-semibold mb-4">VELORA</h3>
+          <p className="text- text-muted-foreground mb-4">
+            Your destination for premium beauty and cosmetics products.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <a href="#" className=" hover:text-accent-foreground transition-colors text-[#154734]">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-[#154734] hover:text-accent-foreground transition-colors">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-[#154734] hover:text-accent-foreground transition-colors">
+              <Twitter className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+
+    {/* Payment Methods */}
+        <div className="flex justify-center gap-2 mb-6">
+          <img alt="mastercard" src="https://f.nooncdn.com/s/app/com/noon/design-system/payment-methods-v2/card-mastercard.svg" width="41" height="26" />
+          <img alt="visa" src="https://f.nooncdn.com/s/app/com/noon/design-system/payment-methods-v2/card-visa.svg" width="41" height="26" />
+          <img alt="valu" src="https://f.nooncdn.com/s/app/com/noon/design-system/payment-methods-v2/valu_v2.svg" width="41" height="26" />
+          <img alt="amex" src="https://f.nooncdn.com/s/app/com/noon/design-system/payment-methods-v2/card-amex.svg" width="41" height="26" />
+          <img alt="cod" src="https://f.nooncdn.com/s/app/com/noon/design-system/payment-methods-v2/cod-ar.svg" width="41" height="26" />
+        </div>
+        {/* Customer Service + Quick Links - always side by side */}
+        <div className="flex justify-between mb-10">
+           
+          {/* Customer Service - left */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">LUXE BEAUTY</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Your destination for premium beauty and cosmetics products.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-            </div>
+            <h3 className=" font-semibold mb-4 text-[#154734]"> Service</h3>
+            <ul className="space-y-2  text-sm">
+              <li>
+                <Link to="/profile" className=" hover:text-accent-foreground transition-colors">
+                  My Account
+                </Link>
+              </li>
+              <li>
+                <a href="#" className=" hover:text-accent-foreground transition-colors">
+                  Shipping & Returns
+                </a>
+              </li>
+              <li>
+                <a href="#" className=" hover:text-accent-foreground transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className=" hover:text-accent-foreground transition-colors">
+                  Terms & Conditions
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+          {/* Quick Links - right */}
+          <div className="text-right">
+            <h3 className="text-lg font-semibold mb-4 text-[#154734]"> Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/shop" className="text-muted-foreground hover:text-accent-foreground transition-colors">
@@ -51,57 +88,18 @@ export function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* Customer Service */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/profile" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                  My Account
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                  Shipping & Returns
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-accent-foreground transition-colors">
-                  Terms & Conditions
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                <span>123 Beauty Street, New York, NY 10001</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 flex-shrink-0" />
-                <span>+1 (555) 123-4567</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 flex-shrink-0" />
-                <span>support@luxebeauty.com</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Luxe Beauty. All rights reserved.</p>
-        </div>
+       
+
+       
+
+        {/* Copyright */}
+       <div className="border-t border-border pt-1 text-center text-sm text-muted-foreground">
+  <p>&copy; {new Date().getFullYear()} Luxe Beauty. All rights reserved.</p>
+</div>
+
+
       </div>
     </footer>
   );

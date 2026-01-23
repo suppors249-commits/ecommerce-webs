@@ -38,11 +38,20 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link to={`/product/${product.id}`} className="block">
         {/* الصورة */}
         <div className="relative aspect-square overflow-hidden bg-muted">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-300 scale-100 group-hover:scale-105"
-          />
+         <img
+  src={product.image}
+  alt={product.name}
+  className="
+    w-full 
+    h-40 sm:h-40 md:h-32 lg:h-60 
+    object-cover 
+    transition-transform 
+    duration-300 
+    scale-70 
+    group-hover:scale-105
+  "
+/>
+
 
           {/* الأيقونات تظهر من تحت عند hover أو touch */}
           <div

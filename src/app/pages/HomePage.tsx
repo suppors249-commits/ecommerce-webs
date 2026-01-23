@@ -11,9 +11,47 @@ import brand2 from "@/assets/brand-logo-2.png";
 import brand3 from "@/assets/brand-logo-3.png";
 import brand4 from "@/assets/brand-logo-4.png";
 import brand5 from "@/assets/brand-logo-5.png";
+import { useShop } from "@/context/ShopContext";
+ import product1 from "@/img/product-1.png";
+import product2 from "@/img/product-2.png";
+import product3 from "@/img/product-3.png";
+import product4 from "@/img/product-4.png";
+// ... لحدي product10
+import product10_1 from "@/img/product-10.png";
+import product10_2 from "@/img/product-11.png";
+import sample from "@/img/sample.MP4";
 
+
+
+// … وهكذا
+const productsArray = [
+  { id: 1, name: "Product 1", price: 45, img1: product1, img2: product2 },
+  { id: 2, name: "Product 2", price: 45, img1: product1, img2: product2 },
+  // ...
+  { id: 10, name: "Product 10", price: 45, img1: product10_1, img2: product10_2 },
+];
+
+
+
+const features = [
+  {
+    icon: "https://f.nooncdn.com/mpcms/EN0001/assets/434c81c3-b47d-4b1d-8d37-41056b38e914.png",
+    title: "التوصيل بواسطة نوون",
+  },
+  {
+    icon: "https://f.nooncdn.com/mpcms/EN0001/assets/98400019-443c-403a-b6c1-02731c2169d1.png",
+    title: "البائع ذو تقييم عالي",
+  },
+  {
+    icon: "https://f.nooncdn.com/mpcms/EN0001/assets/9720b273-5456-4d2a-b16f-7d24c33ab8f0.png",
+    title: "منتج قليل الاسترجاع",
+  },
+  {
+    icon: "https://f.nooncdn.com/mpcms/EN0001/assets/ff7c3e88-23de-44a6-8677-63347335d040.png",
+    title: "الدفع عند الاستلام",
+  },
+];
 const INSTAGRAM_URL = "https://www.instagram.com/soo_249/";
-
 // ===== صور الهيرو =====
 const heroImages = [
   'https://i.postimg.cc/T2cVf8yZ/hero-bg-1.webp',
@@ -21,14 +59,13 @@ const heroImages = [
   'https://i.postimg.cc/NjnVD2BD/hero-bg-3.webp',
   'https://i.postimg.cc/wM9bMhQ3/banner-2.webp',
 ];
-
 // ===== صور Social Feed =====
 import social1 from "@/assets/social-image-1.jpg";
 import social2 from "@/assets/social-image-2.jpg";
 import social3 from "@/assets/social-image-3.jpg";
 const socials = [social1, social2, social3];
-
 export function HomePage() {
+    const { addToCart } = useShop(); // ✅ أضف دا
   const [email, setEmail] = useState('');
   const [heroIndex, setHeroIndex] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null); // Featured Products hover
@@ -99,138 +136,165 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
 
   return (
     <div className="min-h-screen">
-      {/* ================= HERO SECTION-1 ================= */}
-      <section className="relative h-[600px] w-full overflow-hidden">
-        <AnimatePresence>
-          <motion.img
-            key={heroIndex}
-            src={heroImages[heroIndex]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </AnimatePresence>
+     {/* ================= HERO SECTION-1 ================= */}
+     {/* ================= HERO SECTION-1 ================= */}
+  <section className="relative h-[500px] w-full overflow-hidden">
+  {/* الصور الخلفية */}
+  <AnimatePresence>
+    <motion.img
+      key={heroIndex}
+      src={heroImages[heroIndex]}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  </AnimatePresence>
 
-        <div className="absolute inset-0 bg-white/30" />
+  {/* طبقة شفافة على الصور */}
+  <div className="absolute inset-0 bg-black/30" />
 
-        <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
-          <div className="max-w-2xl text-black">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-semibold mb-6"
-            >
-              Discover Your Natural Beauty
-            </motion.h1>
+  {/* المحتوى */}
+  <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
+    <div className="text-center max-w-2xl text-white">
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-lg md:text-xl mb-8"
-            >
-              Premium cosmetics and skincare products for the modern you
-            </motion.p>
+      {/* العنوان الرئيسي */}
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="text-3xl md:text-5xl font-bold mb-4"
+      >
+        NEW YEAR, NEW YOU
+      </motion.h3>
 
-            {/* الأزرار */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex gap-4 flex-wrap"
-            >
-              {/* زر تسويقي */}
-              <Link
-                to="/shop"
-                className="bg-orange-500 text-white px-8 py-3 rounded-full hover:bg-orange-600 transition flex items-center gap-2 shadow-lg"
-              >
-                Shop Now
-                <ArrowRight size={18} />
-              </Link>
+      {/* العنوان الفرعي */}
+      <motion.h4
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="text-lg md:text-2xl font-medium mb-8"
+      >
+        TURNING ROUTINES INTO RITUALS
+      </motion.h4>
 
-              {/* زر ثانوي */}
-              <Link
-                to="/categories"
-                className="bg-white text-black px-8 py-3 rounded-full border border-black/20 hover:bg-black hover:text-white transition"
-              >
-                Explore Collection
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-     {/* ================= Featured Products-2 ================= */}
-    <section className="py-8">
-          <div className="container mx-auto px-8">
-  {/* ================= عنوان القسم ================= */}
-  <div className="row">
-    <div className="section-title mb-5 product-title text-center">
-      <h2 className="fw-semibold fs-1 text-3xl md:text-4xl font-semibold">
-        Our Featured Products
-      </h2>
-      <p className="fw-semibold fs-1">Get the skin you want to feel</p>
+       <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="flex gap-4 justify-center flex-wrap"
+    >
+      <div className="hero__cta__wrapper flex justify-center mt-6">
+        <button
+       
+          onClick={(e) => {
+            
+            const btn = e.currentTarget;
+            btn.style.backgroundColor = "#154734";
+            btn.style.color = "#fff";
+            // هنا ينقلك لصفحة التسوق
+            
+          }}
+          className="px-14 py-5 border border-white text-white uppercase font-medium text-sm md:text-base rounded-md transition-colors"
+        >
+          SHOP ALL 
+          
+        </button>
+      </div>
+    </motion.div>
     </div>
   </div>
+</section>
 
-  {/* ================= slider المنتجات ================= */}
-  <div ref={sliderRef} className="flex gap-8 overflow-x-auto scrollbar-hide mt-10">
-    {products.map((p) => (
-      <div
-        key={p.id}
-        className="flex-none w-80 bg-white rounded-xl shadow-md relative featured-card"
-        onMouseEnter={() => setHovered(Number(p.id))}
-        onMouseLeave={() => setHovered(null)}
-      >
-        {/* الصورة */}
-        <div className="relative overflow-hidden rounded-t-xl h-80 w-full flex items-center justify-center bg-gray-100">
-          <img
-            src={hovered === Number(p.id) && p.images[1] ? p.images[1] : p.images[0]}
-            alt={p.name}
-            className="max-h-70 object-contain transition-all duration-1000"
-          />
-        </div>
 
-        {/* أيقونات hover */}
-        {hovered === Number(p.id) && (
-          <div className="absolute inset-0 bg-black/30 flex items-center justify-center gap-3">
-            <button className="text-white p-2 bg-black/50 rounded-full">
-              <Eye size={20} />
-            </button>
-            <button className="text-white p-2 bg-black/50 rounded-full">
-              <Heart size={20} />
-            </button>
-            <button className="text-white p-2 bg-black/50 rounded-full">
-              <ShoppingCart size={20} />
-            </button>
-          </div>
-        )}
-      {/* اسم المنتج والسعر */}
-        <a href={`/product/${p.id}`} className="block p-4 text-center">
-          <span className="text-orange-500 font-semibold">${p.price}</span>
-          <h3 className="mt-2 text-lg font-medium">{p.name}</h3>
-        </a>
-        {/* Badge Sale */}
-        {p.isSale && (
-          <span className="absolute top-3 left-3 bg-green-600 text-white px-2 py-1 text-xs rounded">
-            Sale
-          </span>
-        )}
 
-       
+     {/* ================= Featured Products-2 ================= */}
+    <section className="py-4">
+  <div className="container mx-auto px-8">
+    {/* ================= عنوان القسم ================= */}
+    <div className="row">
+      <div className="section-title mb-5 product-title text-center">
+        <h2 className="fw-semibold fs-1 text-3xl md:text-4xl font-semibold text-[#154734]">
+          Featured Products
+        </h2>
+        <p className="fw-semibold fs-1 text-white ">Get the skin you want to feel</p>
       </div>
-    ))}
-  </div>
-</div>
+    </div>
 
-    </section>
+    {/* ================= slider المنتجات ================= */}
+    <div ref={sliderRef} className="flex gap-8 overflow-x-auto scrollbar-hide mt-10">
+      {products.map((p) => (
+        <div
+          key={p.id}
+          className="flex-none w-80 rounded-xl shadow-md relative featured-card text-white"
+          style={{ backgroundColor: "#f2f9f5" }} // اللون الجديد للبطاقة كاملة
+          onMouseEnter={() => setHovered(Number(p.id))}
+          onMouseLeave={() => setHovered(null)}
+        >
+          {/* الصورة */}
+          <div className="relative overflow-hidden rounded-t-xl h-80 w-full flex items-center justify-center">
+            <img
+              src={hovered === Number(p.id) && p.images[1] ? p.images[1] : p.images[0]}
+              alt={p.name}
+              className="max-h-70 object-contain transition-all duration-1000"
+            />
+          </div>
+
+          {/* أيقونات hover */}
+          {hovered === Number(p.id) && (
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center gap-8">
+              <Link
+                to={`/product/${p.id}`}
+                className="text-white p-2 bg-black/50 rounded-full hover:scale-110 transition"
+              >
+                <Eye size={20} />
+              </Link>
+
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  addToCart({
+                    id: p.id,
+                    name: p.name,
+                    price: p.price,
+                    image: p.images[0],
+                    category: p.category,
+                    quantity: 1,
+                  });
+                }}
+                className="text-white p-2 bg-black/50 rounded-full hover:scale-110 transition"
+              >
+                <ShoppingCart size={20} />
+              </button>
+            </div>
+          )}
+
+          {/* اسم المنتج والسعر */}
+          <a href={`/product/${p.id}`} className="block p-4 text-center text-[#154734]">
+            <span className="font-semibold">${p.price}</span>
+            <h3 className="mt-2 text-lg font-medium">{p.name}</h3>
+          </a>
+
+          {/* Badge Sale */}
+          {p.isSale && (
+            <span className="absolute top-3 left-3 bg-green-600 text-white px-2 py-1 text-xs rounded text-[#154734]">
+              Sale
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
  {/* ================= Brands Section-3 ================= */}
-<section className="py-16 bg-gray-50">
+<section className="py-16" style={{ backgroundColor: "#f2f9f5" }}>
   <div className="container mx-auto px-4">
-
+    <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-center text-[#154734]">
+      Brands
+    </h2>
 
     <div className="overflow-hidden relative">
       <div
@@ -240,23 +304,22 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
         }}
       >
         {[brand1, brand2, brand3, brand4, brand5].map((img, idx) => (
-        <img
-  key={idx}
-  src={img}
-  alt={`brand-${idx + 1}`}
-  className="h-16 object-contain flex-shrink-0"
-/>
-
+          <img
+            key={idx}
+            src={img}
+            alt={`brand-${idx + 1}`}
+            className="h-16 object-contain flex-shrink-0"
+          />
         ))}
+
         {/* لتكرار الصور بنفس التسلسل عشان حركة سلسة */}
         {[brand1, brand2, brand3, brand4, brand5].map((img, idx) => (
-         <img
-  key={idx}
-  src={img}
-  alt={`brand-${idx + 1}`}
-  className="h-16 object-contain flex-shrink-0"
-/>
-
+          <img
+            key={idx}
+            src={img}
+            alt={`brand-${idx + 1}`}
+            className="h-16 object-contain flex-shrink-0"
+          />
         ))}
       </div>
     </div>
@@ -273,16 +336,18 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
 </section>
 
 
+    
 
       {/* ================= Section-4  ================= */}
-     <section className="py-4">
-  <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-center">
-    Our Brands
+     <section className="py-8">
+  <h2 className="text-3xl md:text-3xl font-semibold mb-6 text-center text-[#154734] ">
+   Shop by Category
   </h2>
 
-  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+  <div className="container mx-auto px-4 sm:px-6">
+  <div className="grid grid-cols-2 gap-4 ">
     {categories.map((category) => {
-      const [hovered, setHovered] = useState(false); // حالة hover أو touch
+      const [hovered, setHovered] = useState(false);
       return (
         <Link
           key={category.id}
@@ -293,14 +358,11 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
           onTouchStart={() => setHovered(true)}
           onTouchEnd={() => setHovered(false)}
         >
-          {/* الصورة */}
           <img
             src={category.image}
             alt={category.name}
-            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-36 object-cover transition-transform duration-200 group-hover:scale-110"
           />
-
-          {/* Overlay للنص */}
           <div
             className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-300 ${
               hovered ? "opacity-100" : "opacity-0"
@@ -312,129 +374,160 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
       );
     })}
   </div>
-</section>
+</div>
 
-        {/* ================= Promotional Banners-5 ================= */}
-      <section className="py-10">
-        <div className="container mx-auto px-4 space-y-6">
-          {/* Banner 2 */}
-          <div className="group relative cursor-pointer flex flex-row md:flex-row-reverse items-center bg-orange-500 text-white rounded-2xl overflow-hidden h-[180px] md:h-[260px]">
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition duration-300 z-10" />
+     </section>
 
-            {/* Image */}
-            <div className="w-1/2 h-full overflow-hidden">
-              <img
-                src="https://i.postimg.cc/ZRrw4L0N/store-02.webp"
-                alt="25% Off"
-                className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
+     
 
-            {/* Text */}
-            <div className="w-1/2 p-5 md:p-10 relative z-20">
-              <h3 className="text-xl md:text-3xl font-semibold mb-2">
-                25% off Everything
-              </h3>
-            </div>
-          </div>
-        </div>
-      </section>
+ 
+  
+
+ 
+ 
       {/* =================  المنتجات الاول -6 ================= */}
-       <section className="py-16 bg-muted">
+   <section className="py-5 bg-muted" style={{ backgroundColor: "#f2f9f5" }}>
   <div className="container mx-auto px-4">
+    {/* عنوان القسم */}
     <SectionHeader title="Best Sellers" />
 
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-      {bestSellers.slice(0, 5).map((p, index) => (
-        <div
-          key={p.id}
-          className={
-            index === 4
-              ? "col-span-2 md:col-span-1 flex justify-center"
-              : ""
-          }
-        >
-          {/* نفس مقاس باقي المنتجات */}
-          <div className="w-full max-w-[180px] md:max-w-none">
-            <ProductCard product={p} />
+ <section className="py-5">
+  <div className="container mx-auto px-4">
+    <div className="grid grid-flow-col auto-cols-[calc(50%-1rem)] sm:auto-cols-[calc(33%-1rem)] md:auto-cols-[calc(20%-1rem)] gap-1 overflow-x-auto scrollbar-hide">
+      {[
+        {
+          image: "//corpusnaturals.com/cdn/shop/files/Corpus_CategoryImage_HandCare.jpg?v=1747345304&width=1000",
+          link: "/shop",
+          label: "HAND CARE"
+        },
+        {
+          image: "//corpusnaturals.com/cdn/shop/files/Corpus_Homepage_CategoryImage_Deodorants.jpg?v=1727903866&width=1000",
+          link: "/shop",
+          label: "DEODORANTS"
+        },
+        {
+          image: "//corpusnaturals.com/cdn/shop/files/Corpus_CategoryImage_BodyButter_alt4.jpg?v=1687446528&width=1000",
+          link: "/shop",
+          label: "BODY CARE"
+        },
+        {
+          image: "//corpusnaturals.com/cdn/shop/files/Corpus_CategoryImage_Haircare.jpg?v=1702940836&width=2000",
+          link: "/shop",
+          label: "HAIR CARE"
+        },
+        {
+          image: "//corpusnaturals.com/cdn/shop/files/Corpus-Candles_Trio-Lineup-Right.jpg?v=1678396734&width=2000",
+          link: "/shop",
+          label: "SHOP ALL"
+        }
+      ].map((item, idx) => (
+        <div key={idx} className="flex flex-col items-center text-center min-w-[140px] sm:min-w-[160px] md:min-w-[180px]">
+          <div className="w-full h-[180px] sm:h-[200px] md:h-[250px] overflow-hidden relative">
+            <a href={item.link}>
+              <img
+                src={item.image}
+                alt={item.label}
+                className="w-full h-full object-cover border-0 rounded-none hover:scale-105 transition-transform"
+              />
+            </a>
           </div>
+          <p className="mt-2 font-medium text-[#154734] text-sm sm:text-base">{item.label}</p>
         </div>
       ))}
     </div>
   </div>
-      </section>
+</section>
+
+
+
+  </div>
+</section>
+
+
      
     {/* =================  المنتجات العرض  ================= */}
-        <section className="py-12">
-  <div className="container mx-auto px-4 space-y-6">
-    <div className="grid lg:grid-cols-12 gap-6 items-start">
+  <section className="py-5 my-5">
+  <div className="container mx-auto px-4">
+    {/* عنوان القسم */}
+    <div className="text-center mb-5">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#154734]">
+        Customer favorite beauty 
+      </h2>
+      
+    </div>
 
-      {/* الصورة الكبيرة + النص + الزر */}
-      <div className="lg:col-span-5 relative h-120 md:h-[600px] rounded-xl overflow-hidden">
-        <img
-          src="https://i.postimg.cc/VLxWV7qr/banner-female.webp' border='0' alt='banner-female"
-          alt="female-banner"
-          className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-black/20 flex flex-col justify-center items-start p-6 md:p-10">
-          <h3 className="text-white text-3xl md:text-4xl font-bold mb-2">
+    <div className="grid lg:grid-cols-12 gap-6 items-start ">
+      {/* البانر */}
+      <div className="lg:col-span-5 relative mb-5 lg:mb-0 group ">
+    <video
+  src={sample}
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="w-full h-74 sm:h-96 md:h-[500px] lg:h-[600px] object-cover rounded-xl"
+/>
+
+
+        <div className="absolute inset-0 bg-black/20 flex flex-col justify-center items-start p-4 sm:p-6 md:p-10 rounded-xl">
+          <h3 className="text-[#154734] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-2">
             Empower Yourself
           </h3>
-          <p className="text-white text-sm md:text-lg mb-4">
+          <p className="text text-xs sm:text-sm md:text-base mb-4">
             Get the skin you want to feel
           </p>
-         <button
-          className="
-    bg-black
-    text-white
-    px-6 py-3
-    rounded-xl
-    font-semibold
-    transition-all
-    duration-300
-    hover:bg-[#07bc0c]
-    hover:scale-105
-    active:bg-[#07bc0c]
-    active:scale-95
-    focus:bg-[#07bc0c]
-    focus:outline-none
-           "> Explore More</button>
+           <button
+       
+          onClick={(e) => {
+            
+            const btn = e.currentTarget;
+            btn.style.backgroundColor = "#154734";
+            btn.style.color = "#f5f1f1";
+            // هنا ينقلك لصفحة التسوق
+            
+          }}
+          className="px-10 py-2 border border-white text-[#154734] uppercase font-medium text-sm md:text-base rounded-md transition-colors"
+        >
+          SHOP ALL 
+          
+        </button>
+          
         </div>
       </div>
+
       {/* المنتجات */}
-      <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {[10, 11, 12, 13, 14, 15].map((item) => (
-          <div key={item} className="group text-center relative">
-            
-            {/* الصور */}
-            <div className="relative overflow-hidden rounded-xl h-[400px] sm:h-[400px] md:h-[400px]">
+      <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 ">
+        {productsArray.map((p) => (
+          <div key={p.id} className="relative group text-center ">
+            <div className="relative overflow-hidden rounded-xl h-88 sm:h-56 md:h-64">
+              {/* الصورة الأساسية */}
               <img
-                src={`/Images/product-${item}-1.webp`}
-                alt={`product ${item}`}
-                className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+                src={p.img1}
+                alt={p.name}
+                className="w-full h-full object-cover transition-opacity duration-10 group-hover:opacity-0 "
               />
+              {/* الصورة عند hover/tap */}
               <img
-                src={`/Images/product-${item}-2.webp`}
-                alt={`product hover ${item}`}
+                src={p.img2}
+                alt={`${p.name} hover`}
                 className="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
 
-              {/* أيقونات */}
-              <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/30 opacity-0 group-hover:opacity-100 transition">
-                <button className="text-white">
-                  <Eye size={20} />
+              {/* أيقونات hover / touch */}
+              <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/30 opacity-0 group-hover:opacity-100 md:group-hover:opacity-100">
+                <button className="text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/50">
+                  <i className="bi bi-eye fs-5"></i>
                 </button>
-                <button className="text-white">
-                  <Heart size={20} />
+                <button className="text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/50">
+                  <i className="bi bi-heart fs-5"></i>
                 </button>
-                <button className="text-white">
-                  <ShoppingCart size={20} />
+                <button className="text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/50">
+                  <i className="bi bi-cart3 fs-5"></i>
                 </button>
               </div>
 
               {/* Sale badge */}
-              {item % 2 === 0 && (
+              {p.sale && (
                 <span className="absolute top-3 left-3 text-xs bg-green-600 text-white px-2 py-1 rounded">
                   Sale
                 </span>
@@ -442,18 +535,24 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
             </div>
 
             {/* السعر والاسم */}
-            <div className="pt-3">
-              <span className="text-orange-500 font-semibold">$45.00</span>
-              <h3 className="mt-1 text-sm md:text-base font-medium">Product Name</h3>
-            </div>
+            <a href={`/product/${p.id}`} className="text-[#154734] block">
+              <div className="pt-3">
+                <span className="text-orange text-[#154734] font-semibold">${p.price}.00</span>
+                <h3 className="mt-1 text sm:text-base md:text-base lg:text-lg font-medium">
+                  {p.name}
+                </h3>
+              </div>
+            </a>
           </div>
         ))}
       </div>
-
     </div>
   </div>
-        </section>
- <section className="py-10 bg-gray-50">
+</section>
+
+
+
+      <section className="py-10 bg-gray-50" style={{ backgroundColor: "#f2f9f5" }}>
   <div className="social-image-container py-5 px-5 mx-auto">
     <div className="flex flex-wrap justify-center gap-4">
       {socials.map((img, index) => (
@@ -476,11 +575,11 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
              
               
               <a
-    href={INSTAGRAM_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="p-3 bg-black/50 rounded-full hover:bg-black/70 transition"
-    aria-label="Visit our Instagram"
+           href={INSTAGRAM_URL}
+             target="_blank"
+              rel="noopener noreferrer"
+             className="p-3 bg-black/50 rounded-full hover:bg-black/70 transition"
+                aria-label="Visit our Instagram"
   >
     <Instagram className="h-6 w-6 text-white" />
   </a>
@@ -493,7 +592,7 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
       ))}
     </div>
   </div>
-</section>
+      </section>
     {/* =================  المنتجات الاول  ================= */}
        
       {/* ================= New Arrivals ================= */}
@@ -524,22 +623,16 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
     </form>
   </div>
        </section>
+     
+   
 
 
       
-       <section className="py-12 border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center gap-10">
-            <Feature icon={<Truck className="h-6 w-6 mx-auto" />} title=" Shipping" />
-            <Feature icon={<Shield className="h-6 w-6 mx-auto" />} title="Secure "  />
-            <Feature icon={<HeadphonesIcon className="h-6 w-6 mx-auto" />} title="24/7 " />
-          </div>
-        </div>
-      </section>
+      
+
     </div>
   );
 }
-
 /* ================= Components صغيرة ================= */
 function Feature({ icon, title, desc }: any) {
   return (
@@ -550,7 +643,6 @@ function Feature({ icon, title, desc }: any) {
     </div>
   );
 }
-
 function SectionHeader({ title }: { title: string }) {
   return (
     <div className="flex justify-between items-center mb-8">

@@ -89,7 +89,7 @@ export const categories = [
   { 
     id: "Skincare", 
     name: "Skincare", 
-    image: "https://images.unsplash.com/photo-1556228724-4b1b4b97b6a0" 
+    image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de" 
   },
   { 
     id: "Fragrance", 

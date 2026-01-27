@@ -627,31 +627,14 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
           />
           <div className="p-4 text-center">
             <h3 className="text-lg font-medium text-[#154734]">{p.name}</h3>
-            <span className="block mt-1 text-lg font-semibold">${p.price}</span>
+            
           </div>
         </div>
       ))}
     </div>
 
     {/* باقي المنتجات 4 في كل صف */}
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      {products.slice(6).map((p) => (
-        <div
-          key={p.id}
-          className="bg-[#f2f9f5] rounded-xl overflow-hidden relative"
-        >
-          <img
-            src={p.images[0]}
-            alt={p.name}
-            className="w-full h-40 object-contain"
-          />
-          <div className="p-4 text-center">
-            <h3 className="text-lg font-medium text-[#154734]">{p.name}</h3>
-            <span className="block mt-1 text-lg font-semibold">${p.price}</span>
-          </div>
-        </div>
-      ))}
-    </div>
+    
   </div>
 </section>
     

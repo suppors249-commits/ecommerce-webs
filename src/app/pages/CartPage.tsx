@@ -9,27 +9,41 @@ export function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center">
-        <ShoppingBag className="h-24 w-24 mx-auto mb-6 text-muted-foreground" />
+      <div className="container mx-auto px-4 py-16 text-center" style={{ backgroundColor: "#f2f9f5" }}>
+        <ShoppingBag className="h-24 w-24 mx-auto mb-6 -foreground text-[#154734]" />
         <h2 className="text-2xl font-semibold mb-4">Your cart is empty</h2>
-        <p className="text-muted-foreground mb-8">
+        <p className="text-muted-foreground mb-8" style={{ backgroundColor: "#18ad58" }}>
           Add some beautiful products to your cart
         </p>
-        <Link
-          to="/shop"
-          className="inline-flex bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors"
-        >
-          Continue Shopping
-        </Link>
+       <Link
+      to="/shop"
+     className="
+     px-14 py-5
+     border border-[#154734]
+     text-[#154734]
+     uppercase
+     font-medium
+     text-sm md:text-base
+     rounded-md
+     transition-colors
+     hover:bg-[#154734]
+     hover:text-white
+     inline-block
+     text-center
+  "
+>
+  SHOP ALL
+</Link>
+
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-semibold mb-8">Shopping Cart</h1>
+    <div className="container mx-auto px-4 py-8 text-[#154734]" style={{ backgroundColor: "#f2f9f5" }}>
+      <h1 className=" font-semibold mb-8 text-[#154734]">Shopping Cart</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" style={{ backgroundColor: "#f2f9f5" }}>
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
           {cart.map((item) => (
@@ -44,9 +58,7 @@ export function CartPage() {
               />
               <div className="flex-1">
                 <h3 className="font-medium mb-1">{item.name}</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {item.category}
-                </p>
+                
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2 border rounded-lg">
                     <button
@@ -82,7 +94,7 @@ export function CartPage() {
         </div>
 
         {/* Order Summary */}
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1" >
           <div className="bg-card p-6 rounded-xl border sticky top-24">
             <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
             <div className="space-y-3 mb-6">

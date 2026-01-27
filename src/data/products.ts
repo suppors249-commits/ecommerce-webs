@@ -1,8 +1,4 @@
-import socis1 from './assets/socis1.jpg';
-import socis2 from './assets/socis2.jpg';
-import socis3 from './assets/socis3.jpg';
-import socis4 from './assets/socis4.jpg';
-
+// استيراد الصور
 import product1 from "@/img/product-1.png";
 import product2 from "@/img/product-2.png";
 import product3 from "@/img/product-3.png";
@@ -15,12 +11,29 @@ import product9 from "@/img/product-9.png";
 import product10 from "@/img/product-10.png";
 import product11 from "@/img/product-11.png";
 import product12 from "@/img/product-12.png";
+import product13 from "@/img/product-13.png";
+import product14 from "@/img/product-14.png";
 
+import product15 from "@/img/product-15.jpg";
+import product16 from "@/img/product-16.jpg";
+
+import product17 from "@/img/product-17.webp";
+import product18 from "@/img/product-18.webp";
+import product19 from "@/img/product-19.webp";
+import product20 from "@/img/product-20.webp";
+import product21 from "@/img/product-21.webp";
+import product22 from "@/img/product-22.webp";
+import product23 from "@/img/product-23.webp";
+import product24 from "@/img/product-24.webp";
+import product25 from "@/img/product-25.webp";
+import product26 from "@/img/product-26.webp";
+import product27 from "@/img/product-27.webp";
+
+// واجهة المنتج
 export interface Product {
   id: string;
   name: string;
   price: number;
-  originalPrice?: number;
   description: string;
   category: string;
   image: string;
@@ -28,248 +41,62 @@ export interface Product {
   rating: number;
   reviews: number;
   inStock: boolean;
-  isNew?: boolean;
-  isBestSeller?: boolean;
-  ingredients?: string[];
 }
 
+// قائمة المنتجات 1-27
 export const products: Product[] = [
-  {
-    id: "1",
-    name: "Radiant Glow Serum",
-    price: 49.99,
-    originalPrice: 69.99,
-    description: "A luxurious vitamin C serum that brightens and evens skin tone for a radiant complexion.",
-    category: "Skincare",
-    image: product1,
-    images: [
-      product1,
-      "https://m.media-amazon.com/images/I/61Ge-Saz+9L._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/61qPMyOcraL._AC_SL1500_.jpg",
-    ],
-    rating: 4.8,
-    reviews: 324,
-    inStock: true,
-    isBestSeller: true,
-    ingredients: ["Vitamin C", "Hyaluronic Acid", "Niacinamide"]
+  { id: "1", name: "Product 1", price: 19.99, description: "Description for product 1", category: "Skincare", image: product1, images: [product1], rating: 4.5, reviews: 120, inStock: true },
+  { id: "2", name: "Product 2", price: 24.99, description: "Description for product 2", category: "Makeup", image: product2, images: [product2], rating: 4.6, reviews: 110, inStock: true },
+  { id: "3", name: "Product 3", price: 29.99, description: "Description for product 3", category: "Haircare", image: product3, images: [product3], rating: 4.7, reviews: 130, inStock: true },
+  { id: "4", name: "Product 4", price: 34.99, description: "Description for product 4", category: "Skincare", image: product4, images: [product4], rating: 4.3, reviews: 140, inStock: true },
+  { id: "5", name: "Product 5", price: 39.99, description: "Description for product 5", category: "Makeup", image: product5, images: [product5], rating: 4.8, reviews: 100, inStock: true },
+  { id: "6", name: "Product 6", price: 44.99, description: "Description for product 6", category: "Haircare", image: product6, images: [product6], rating: 4.2, reviews: 150, inStock: true },
+  { id: "7", name: "Product 7", price: 49.99, description: "Description for product 7", category: "Skincare", image: product7, images: [product7], rating: 4.5, reviews: 160, inStock: true },
+  { id: "8", name: "Product 8", price: 54.99, description: "Description for product 8", category: "Makeup", image: product8, images: [product8], rating: 4.7, reviews: 180, inStock: true },
+  { id: "9", name: "Product 9", price: 59.99, description: "Description for product 9", category: "Haircare", image: product9, images: [product9], rating: 4.9, reviews: 200, inStock: true },
+  { id: "10", name: "Product 10", price: 64.99, description: "Description for product 10", category: "Skincare", image: product10, images: [product10], rating: 4.6, reviews: 220, inStock: true },
+  { id: "11", name: "Product 11", price: 69.99, description: "Description for product 11", category: "Makeup", image: product11, images: [product11], rating: 4.8, reviews: 240, inStock: true },
+  { id: "12", name: "Product 12", price: 74.99, description: "Description for product 12", category: "Haircare", image: product12, images: [product12], rating: 4.5, reviews: 260, inStock: true },
+  { id: "13", name: "Product 13", price: 79.99, description: "Description for product 13", category: "Skincare", image: product13, images: [product13], rating: 4.4, reviews: 280, inStock: true },
+  { id: "14", name: "Product 14", price: 84.99, description: "Description for product 14", category: "Makeup", image: product14, images: [product14], rating: 4.3, reviews: 300, inStock: true },
+  { id: "15", name: "Product 15", price: 89.99, description: "Description for product 15", category: "Haircare", image: product15, images: [product15], rating: 4.6, reviews: 320, inStock: true },
+  { id: "16", name: "Product 16", price: 94.99, description: "Description for product 16", category: "Skincare", image: product16, images: [product16], rating: 4.5, reviews: 340, inStock: true },
+  { id: "17", name: "Product 17", price: 99.99, description: "Description for product 17", category: "Makeup", image: product17, images: [product17], rating: 4.7, reviews: 360, inStock: true },
+  { id: "18", name: "Product 18", price: 104.99, description: "Description for product 18", category: "Haircare", image: product18, images: [product18], rating: 4.8, reviews: 380, inStock: true },
+  { id: "19", name: "Product 19", price: 109.99, description: "Description for product 19", category: "Skincare", image: product19, images: [product19], rating: 4.6, reviews: 400, inStock: true },
+  { id: "20", name: "Product 20", price: 114.99, description: "Description for product 20", category: "Makeup", image: product20, images: [product20], rating: 4.7, reviews: 420, inStock: true },
+  { id: "21", name: "Product 21", price: 119.99, description: "Description for product 21", category: "Haircare", image: product21, images: [product21], rating: 4.8, reviews: 440, inStock: true },
+  { id: "22", name: "Product 22", price: 124.99, description: "Description for product 22", category: "Skincare", image: product22, images: [product22], rating: 4.5, reviews: 460, inStock: true },
+  { id: "23", name: "Product 23", price: 129.99, description: "Description for product 23", category: "Haircare", image: product23, images: [product23], rating: 4.8, reviews: 480, inStock: true },
+  { id: "24", name: "Product 24", price: 134.99, description: "Description for product 24", category: "Makeup", image: product24, images: [product24], rating: 4.9, reviews: 500, inStock: true },
+  { id: "25", name: "Product 25", price: 139.99, description: "Description for product 25", category: "Skincare", image: product25, images: [product25], rating: 4.7, reviews: 520, inStock: true },
+  { id: "26", name: "Product 26", price: 144.99, description: "Description for product 26", category: "Haircare", image: product26, images: [product26], rating: 4.6, reviews: 540, inStock: true },
+  { id: "27", name: "Product 27", price: 149.99, description: "Description for product 27", category: "Makeup", image: product27, images: [product27], rating: 4.8, reviews: 560, inStock: true }
+];
+export const categories = [
+  { 
+    id: "makeup", 
+    name: "Makeup", 
+   
+   image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
+
   },
-  {
-    id: "2",
-    name: "Velvet Matte Lipstick",
-    price: 24.99,
-    description: "Long-lasting matte lipstick with a velvety texture and rich color payoff.",
-    category: "Makeup",
-    image: product2,
-    images: [
-      product2,
-      "https://m.media-amazon.com/images/I/61Snk6WQyAL._AC_SL1500_.jpg",
-      "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=600&q=80",
-    ],
-    rating: 4.6,
-    reviews: 512,
-    inStock: true,
-    isBestSeller: true,
-    ingredients: ["Vitamin E", "Jojoba Oil", "Shea Butter"]
+ {
+    id: "haircare",
+    name: "Haircare",
+    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
   },
-  {
-    id: "3",
-    name: "Hydrating Face Cream",
-    price: 39.99,
-    description: "Rich moisturizing cream that deeply hydrates and nourishes all skin types.",
-    category: "Skincare",
-    image: product3,
-    images: [
-      product3,
-      "https://m.media-amazon.com/images/I/51W0EloTP8L._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/51VedonCavL._AC_SL1080_.jpg",
-      "https://m.media-amazon.com/images/I/51e6sRAicfL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/61h+J9cfPNL._AC_SL1340_.jpg",
-    ],
-    rating: 4.7,
-    reviews: 289,
-    inStock: true,
-    isNew: true,
+  { 
+    id: "Skincare", 
+    name: "Skincare", 
+    image: "https://images.unsplash.com/photo-1556228724-4b1b4b97b6a0" 
   },
-  {
-    id: "4",
-    name: "Luminous",
-    description: "جل مرطب للترطيب من دير - 200 جرام - مع الجلسرين | حمض الهيالورونيك | فيتامين E | الصبار | مضاد للأكسدة | ترطيب طويل الأمد | تغذية البشرة |.",
-    category: "Makeup",
-    image: product4,
-    images: [
-      product4,
-      "https://m.media-amazon.com/images/I/51pUe7tyOaL._AC_SL1000_.jpg",
-      "https://images.unsplash.com/photo-1596704017254-9b121068ec31?w=600&q=80",
-    ],
-    rating: 4.5,
-    reviews: 421,
-    inStock: true,
-    price: 120.99,
-    isBestSeller: true,
-  },
-  {
-    id: "5",
-    name: "Nourishing Hair Oil",
-    price: 190.99,
-    description: "سيروم للوجه ريتينول بي 3 من سي ليت، 30 مل.",
-    category: "Haircare",
-    image: product5,
-    images: [
-      product5,
-      "https://m.media-amazon.com/images/I/51XNXVgY4DL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/612uZ-8KJtL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61y1UHsf5IL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/61ZJPIWphDL._AC_SL1500_.jpg",
-    ],
-    rating: 4.9,
-    reviews: 187,
-    inStock: true,
-    isNew: true,
-  },
-  {
-    id: "6",
-    name: "واقي من الشمس",
-    price: 170.99,
-    originalPrice: 222,
-    description: "أقصى حماية من الأشعة فوق البنفسجية: يوفر حماية واسعة الطيف ضد الأشعة فوق البنفسجية فئة A وB ، مما يحمي البشرة من أضرار أشعة الشمس., امتصاص سريع: يمتص هذا الجل.",
-    category: "Perfumes",
-    image: product6,
-    images: [
-      product6,
-      "https://m.media-amazon.com/images/I/51l8cfhUWnL._AC_SL1000_.jpg",
-      "https://m.media-amazon.com/images/I/51FzRdgsWvL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/31q9HpRZLrL._AC_.jpg",
-    ],
-    rating: 4.2,
-    reviews: 654,
-    inStock: true,
-    isNew: true,
-  },
-  {
-    id: "7",
-    name: "SEE-LIT",
-    price: 250.99,
-    originalPrice: 320.99,
-    description: "ترطيب مكثف: يجذب حمض الهيالورونيك الرطوبة إلى البشرة، مما يوفر ترطيبًا عميقًا وطويل الأمد لإطلالة ندية ملئ البشرة: يعزز حجمها الطبيعي، ويقلل من ظهور الخطوط الدقيقة ويمنحك بشرة ناعمة وشابة.",
-    category: "Makeup",
-    image: product7,
-    images: [
-      product7,
-      "https://f.nooncdn.com/p/pzsku/ZF714F4EE952873D55C5CZ/45/1753199188/467d8bc2-410a-435c-b9e5-a96ad1832867.jpg?width=800",
-      "https://f.nooncdn.com/p/pzsku/ZF714F4EE952873D55C5CZ/45/1753199234/56aca3a2-058d-4344-b0fa-d34166a662e9.jpg?width=800",
-      "https://f.nooncdn.com/p/pzsku/ZF714F4EE952873D55C5CZ/45/1753199244/0c7787de-52eb-4ead-b5bf-c7bbfd75dfc5.jpg?width=800",
-      "https://f.nooncdn.com/p/pzsku/ZF714F4EE952873D55C5CZ/45/1753199168/d9e23a13-1c54-421e-b7ab-a135d5a84d08.jpg?width=800",
-    ],
-    rating: 4.7,
-    reviews: 398,
-    inStock: true,
-    isBestSeller: true,
-  },
-  {
-    id: "8",
-    name: "سيروم رموش انتنس باور",
-    price: 160.99,
-    description: "سيروم من Twist & Go هو الحل السحري لرموش أطول، أكثف وأقوى! فعّالة وغنية بالمغذيات الطبيعية اللي بتساعد على تعزيز نمو الرموش والحواجب من الجذور، وكمان تقوي الشعيرات وتمنع تساقطها. يعزز نمو الرموش والحواجب",
-    category: "Skincare",
-    image: product8,
-    images: [
-      product8,
-      "https://f.nooncdn.com/p/pzsku/ZD389729AB825D7F8236AZ/45/1747654661/3a638f88-f27c-448c-bfdd-d091284fb01d.jpg?width=800",
-      "https://f.nooncdn.com/p/pzsku/ZD389729AB825D7F8236AZ/45/1747665444/a1473c27-01e3-431f-87b7-c03822fb8e9e.jpg?width=800",
-    ],
-    rating: 4.6,
-    reviews: 276,
-    inStock: true,
-  },
-  {
-    id: "9",
-    name: "Makeup Brush Set",
-    price: 69.99,
-    originalPrice: 99.99,
-    description: "Professional 12-piece brush set with soft synthetic bristles.",
-    category: "Accessories",
-    image: product9,
-    images: [
-      product9,
-      "https://f.nooncdn.com/p/pzsku/Z1975B885F0BBC3006E8FZ/45/_/1729531221/33f3b08d-c47e-4ed8-b217-2e4a4aa975bc.jpg?width=800",
-      "https://f.nooncdn.com/p/pzsku/Z1975B885F0BBC3006E8FZ/45/_/1729531222/e983fc02-2053-4afc-856f-6e343d0c0c83.jpg?width=800",
-    ],
-    rating: 4.9,
-    reviews: 543,
-    inStock: true,
-    isNew: true,
-  },
-  {
-    id: "10",
-    name: "Volumizing Mascara",
-    price: 19.99,
-    description: "Creates dramatic volume and length without clumping or flaking.",
-    category: "Makeup",
-    image: product10,
-    images: [
-      product10,
-      "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=600&q=80",
-    ],
-    rating: 4.4,
-    reviews: 234,
-    inStock: true,
-  },
-  {
-    id: "11",
-    name: "Anti-Aging Night Cream",
-    price: 64.99,
-    description: "Powerful overnight treatment that reduces fine lines and wrinkles.",
-    category: "Skincare",
-    image: product11,
-    images: [
-      product11,
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80",
-    ],
-    rating: 4.8,
-    reviews: 412,
-    inStock: true,
-    isBestSeller: true,
-  },
-  {
-    id: "12",
-    name: "Sulfate-Free Shampoo",
-    price: 26.99,
-    description: "Gentle formula that cleanses and protects color-treated hair.",
-    category: "Haircare",
-    image: product12,
-    images: [
-      product12,
-      "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=600&q=80",
-    ],
-    rating: 4.5,
-    reviews: 198,
-    inStock: true,
+  { 
+    id: "Fragrance", 
+    name: "Fragrance", 
+    image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de" 
   },
 ];
 
-export const categories = [
-  {
-    id: "makeup",
-    name: "Makeup",
-    description: "Discover our collection of high-quality makeup products",
-    image: "https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg"
-  },
-  {
-    id: "skincare",
-    name: "Skincare",
-    description: "Nourish your skin with premium skincare essentials",
-    image: "https://images.pexels.com/photos/3321416/pexels-photo-3321416.jpeg"
-  },
-  {
-    id: "haircare",
-    name: "Haircare",
-    description: "Professional haircare for healthy, beautiful hair",
-    image: "https://images.pexels.com/photos/6429666/pexels-photo-6429666.jpeg"
-  },
-  {
-    id: "Accessories",
-    name: "Accessories",
-    description: "Professional haircare for healthy, beautiful hair",
-    image: "https://i.postimg.cc/3wG22f3B/blog-11.webp"
-  },
-];
+
+  

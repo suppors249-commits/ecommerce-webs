@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ProductCard } from '@/app/components/ProductCard';
+
 import { products, categories } from '@/data/products';
 import { ArrowRight, Star, Truck, Shield, HeadphonesIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -21,6 +22,11 @@ import product10_1 from "@/img/product-10.png";
 import product10_2 from "@/img/product-11.png";
 import sample from "@/img/sample.MP4";
 
+import product22 from "@/img/product-1.webp";
+import product23 from "@/img/product-23.webp";
+import product26 from "@/img/product-26.webp";
+
+
 
 
 // … وهكذا
@@ -30,6 +36,7 @@ const productsArray = [
   // ...
   { id: 10, name: "Product 10", price: 45, img1: product10_1, img2: product10_2 },
 ];
+
 
 
 
@@ -137,8 +144,7 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
   return (
     <div className="min-h-screen">
      {/* ================= HERO SECTION-1 ================= */}
-     {/* ================= HERO SECTION-1 ================= */}
-  <section className="relative h-[500px] w-full overflow-hidden">
+     <section className="relative h-[730px] w-full overflow-hidden">
   {/* الصور الخلفية */}
   <AnimatePresence>
     <motion.img
@@ -186,56 +192,68 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
       className="flex gap-4 justify-center flex-wrap"
     >
       <div className="hero__cta__wrapper flex justify-center mt-6">
-        <button
+        
        
-          onClick={(e) => {
-            
-            const btn = e.currentTarget;
-            btn.style.backgroundColor = "#154734";
-            btn.style.color = "#fff";
-            // هنا ينقلك لصفحة التسوق
-            
-          }}
-          className="px-14 py-5 border border-white text-white uppercase font-medium text-sm md:text-base rounded-md transition-colors"
-        >
-          SHOP ALL 
-          
-        </button>
+<Link
+  to="/shop"
+  className="px-14 py-5 border border-white text-white uppercase font-medium text-sm md:text-base rounded-md transition-colors hover:bg-[#154734] hover:text-white"
+>
+  SHOP ALL
+</Link>
       </div>
     </motion.div>
     </div>
   </div>
-</section>
+     </section>
 
 
 
      {/* ================= Featured Products-2 ================= */}
-    <section className="py-4">
+      <section className="py-8" style={{ backgroundColor: "#f2f9f5" }}>
   <div className="container mx-auto px-8">
+
     {/* ================= عنوان القسم ================= */}
     <div className="row">
       <div className="section-title mb-5 product-title text-center">
-        <h2 className="fw-semibold fs-1 text-3xl md:text-4xl font-semibold text-[#154734]">
+        <h2 className="text-3xl md:text-4xl font-semibold text-[#154734]">
           Featured Products
         </h2>
-        <p className="fw-semibold fs-1 text-white ">Get the skin you want to feel</p>
+        <p className="mt-4 text-[#333333]">
+          Get the skin you want to feel
+        </p>
       </div>
     </div>
 
     {/* ================= slider المنتجات ================= */}
-    <div ref={sliderRef} className="flex gap-8 overflow-x-auto scrollbar-hide mt-10">
+    <div
+      ref={sliderRef}
+      className="
+        flex gap-8 overflow-x-auto scrollbar-hide mt-20
+        justify-center
+        md:justify-start
+        snap-x snap-mandatory
+      "
+    >
       {products.map((p) => (
         <div
           key={p.id}
-          className="flex-none w-80 rounded-xl shadow-md relative featured-card text-white"
-          style={{ backgroundColor: "#f2f9f5" }} // اللون الجديد للبطاقة كاملة
+          className="
+            flex-none w-80 rounded-xl relative
+            mx-auto md:mx-0
+            snap-center
+          "
+          style={{ backgroundColor: "#f2f9f5" }}
           onMouseEnter={() => setHovered(Number(p.id))}
           onMouseLeave={() => setHovered(null)}
         >
           {/* الصورة */}
           <div className="relative overflow-hidden rounded-t-xl h-80 w-full flex items-center justify-center">
             <img
-              src={hovered === Number(p.id) && p.images[1] ? p.images[1] : p.images[0]}
+              src={
+                hovered === Number(p.id) && p.images[1]
+                  ? p.images[1]
+                  : p.images[0]
+              }
               alt={p.name}
               className="max-h-70 object-contain transition-all duration-1000"
             />
@@ -271,125 +289,43 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
           )}
 
           {/* اسم المنتج والسعر */}
-          <a href={`/product/${p.id}`} className="block p-4 text-center text-[#154734]">
-            <span className="font-semibold">${p.price}</span>
-            <h3 className="mt-2 text-lg font-medium">{p.name}</h3>
-          </a>
+          <Link
+            to={`/product/${p.id}`}
+            className="block p-4 text-center text-[#154734]"
+          >
+            <h3 className="mt-2 text-2xl font-medium">
+              {p.name}
+            </h3>
+            <span className="block mt-2 text-2xl font-semibold">
+              ${p.price}
+            </span>
+          </Link>
 
           {/* Badge Sale */}
           {p.isSale && (
-            <span className="absolute top-3 left-3 bg-green-600 text-white px-2 py-1 text-xs rounded text-[#154734]">
+            <span className="absolute top-3 left-3 bg-green-600 text-white px-2 py-1 text-xs rounded">
               Sale
             </span>
           )}
         </div>
       ))}
     </div>
+
   </div>
 </section>
-
-
- {/* ================= Brands Section-3 ================= */}
-<section className="py-16" style={{ backgroundColor: "#f2f9f5" }}>
-  <div className="container mx-auto px-4">
-    <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-center text-[#154734]">
-      Brands
-    </h2>
-
-    <div className="overflow-hidden relative">
-      <div
-        className="flex gap-6 whitespace-nowrap"
-        style={{
-          animation: "scrollBrands 20s linear infinite",
-        }}
-      >
-        {[brand1, brand2, brand3, brand4, brand5].map((img, idx) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`brand-${idx + 1}`}
-            className="h-16 object-contain flex-shrink-0"
-          />
-        ))}
-
-        {/* لتكرار الصور بنفس التسلسل عشان حركة سلسة */}
-        {[brand1, brand2, brand3, brand4, brand5].map((img, idx) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`brand-${idx + 1}`}
-            className="h-16 object-contain flex-shrink-0"
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-
-  <style>
-    {`
-      @keyframes scrollBrands {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-80%); }
-      }
-    `}
-  </style>
-</section>
-
-
-    
-
-      {/* ================= Section-4  ================= */}
-     <section className="py-8">
-  <h2 className="text-3xl md:text-3xl font-semibold mb-6 text-center text-[#154734] ">
-   Shop by Category
-  </h2>
-
-  <div className="container mx-auto px-4 sm:px-6">
-  <div className="grid grid-cols-2 gap-4 ">
-    {categories.map((category) => {
-      const [hovered, setHovered] = useState(false);
-      return (
-        <Link
-          key={category.id}
-          to={`/shop?category=${category.id}`}
-          className="relative group overflow-hidden rounded-xl"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          onTouchStart={() => setHovered(true)}
-          onTouchEnd={() => setHovered(false)}
-        >
-          <img
-            src={category.image}
-            alt={category.name}
-            className="w-full h-36 object-cover transition-transform duration-200 group-hover:scale-110"
-          />
-          <div
-            className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-300 ${
-              hovered ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <h3 className="text-white text-lg font-semibold">{category.name}</h3>
-          </div>
-        </Link>
-      );
-    })}
-  </div>
-</div>
-
-     </section>
-
-     
-
- 
-  
-
- 
- 
-      {/* =================  المنتجات الاول -6 ================= */}
+      {/* =================  المنتجات الاول -3 ================= */}
    <section className="py-5 bg-muted" style={{ backgroundColor: "#f2f9f5" }}>
   <div className="container mx-auto px-4">
     {/* عنوان القسم */}
-    <SectionHeader title="Best Sellers" />
+  <div className="flex items-center justify-between">
+  <h2 className="text-2xl font-semibold text-[#154734]">
+   Sellers
+  </h2>
+
+  <Link to="/shop" className="flex items-center py-5">
+  <ArrowRight className="h-8 w-10 text-[#154734] cursor-pointer hover:translate-x-1 transition-transform" />
+</Link>
+</div>
 
  <section className="py-5">
   <div className="container mx-auto px-4">
@@ -442,10 +378,92 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
 
   </div>
 </section>
+ {/* ================= Brands Section-4 ================= */}
+<section className="py-16" style={{ backgroundColor: "#f2f9f5" }}>
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl md:text-4xl font-semibold mb-8  text-[#154734]">
+      Brands
+    </h2>
 
+    <div className="overflow-hidden relative">
+      <div
+        className="flex gap-6 whitespace-nowrap"
+        style={{
+          animation: "scrollBrands 20s linear infinite",
+        }}
+      >
+        {[brand1, brand2, brand3, brand4, brand5].map((img, idx) => (
+          <img
+            key={idx}
+            src={img}
+            alt={`brand-${idx + 1}`}
+            className="h-16 object-contain flex-shrink-0"
+          />
+        ))}
 
-     
-    {/* =================  المنتجات العرض  ================= */}
+        {/* لتكرار الصور بنفس التسلسل عشان حركة سلسة */}
+        {[brand1, brand2, brand3, brand4, brand5].map((img, idx) => (
+          <img
+            key={idx}
+            src={img}
+            alt={`brand-${idx + 1}`}
+            className="h-16 object-contain flex-shrink-0"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    {`
+      @keyframes scrollBrands {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-80%); }
+      }
+    `}
+  </style>
+</section>
+      {/* ================= Section-5  ================= */}
+     <section className="py-8">
+  <h2 className="text-3xl md:text-3xl font-semibold mb-6 text-center text-[#154734] ">
+   Shop by Category
+  </h2>
+
+  <div className="container mx-auto px-4 sm:px-6">
+  <div className="grid grid-cols-2 gap-4 ">
+    {categories.map((category) => {
+      const [hovered, setHovered] = useState(false);
+      return (
+        <Link
+          key={category.id}
+          to={`/shop?category=${category.id}`}
+          className="relative group overflow-hidden rounded-xl"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          onTouchStart={() => setHovered(true)}
+          onTouchEnd={() => setHovered(false)}
+        >
+          <img
+            src={category.image}
+            alt={category.name}
+            className="w-full h-36 object-cover transition-transform duration-200 group-hover:scale-110"
+          />
+          <div
+            className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-300 ${
+              hovered ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <h3 className="text-white text-lg font-semibold">{category.name}</h3>
+          </div>
+        </Link>
+      );
+    })}
+  </div>
+</div>
+
+     </section>
+    {/* =================  -6المنتجات العرض  ================= */}
+
   <section className="py-5 my-5">
   <div className="container mx-auto px-4">
     {/* عنوان القسم */}
@@ -495,67 +513,57 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
         </div>
       </div>
 
-      {/* المنتجات */}
-      <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 ">
-        {productsArray.map((p) => (
-          <div key={p.id} className="relative group text-center ">
-            <div className="relative overflow-hidden rounded-xl h-88 sm:h-56 md:h-64">
-              {/* الصورة الأساسية */}
-              <img
-                src={p.img1}
-                alt={p.name}
-                className="w-full h-full object-cover transition-opacity duration-10 group-hover:opacity-0 "
-              />
-              {/* الصورة عند hover/tap */}
-              <img
-                src={p.img2}
-                alt={`${p.name} hover`}
-                className="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-
-              {/* أيقونات hover / touch */}
-              <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/30 opacity-0 group-hover:opacity-100 md:group-hover:opacity-100">
-                <button className="text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/50">
-                  <i className="bi bi-eye fs-5"></i>
-                </button>
-                <button className="text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/50">
-                  <i className="bi bi-heart fs-5"></i>
-                </button>
-                <button className="text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/50">
-                  <i className="bi bi-cart3 fs-5"></i>
-                </button>
-              </div>
-
-              {/* Sale badge */}
-              {p.sale && (
-                <span className="absolute top-3 left-3 text-xs bg-green-600 text-white px-2 py-1 rounded">
-                  Sale
-                </span>
-              )}
-            </div>
-
-            {/* السعر والاسم */}
-            <a href={`/product/${p.id}`} className="text-[#154734] block">
-              <div className="pt-3">
-                <span className="text-orange text-[#154734] font-semibold">${p.price}.00</span>
-                <h3 className="mt-1 text sm:text-base md:text-base lg:text-lg font-medium">
-                  {p.name}
-                </h3>
-              </div>
-            </a>
-          </div>
-        ))}
+     {/* المنتجات */}
+{/* المنتجات */}
+<div className="lg:col-span-12 space-y-4 md:space-y-0 md:grid md:grid-cols-1 gap-6">
+  {productsArray.slice(0, 4).map((p, index) => (
+    <div
+      key={p.id}
+      className={`flex items-center gap-6 flex-wrap md:flex-nowrap
+        ${index % 2 === 1 ? "flex-row-reverse" : "flex-row"}
+      `}
+    >
+      {/* الصورة */}
+      <div className="relative w-40 h-40 md:w-1/2 md:h-80 flex-shrink-0 overflow-hidden rounded-xl">
+        <img
+          src={product26}
+          alt="Product 26"
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+        <img
+          src={product23}
+          alt="Product 23 hover"
+          className="absolute inset-0 w-full h-full object-cover opacity-0 hover:opacity-100 transition-opacity duration-300"
+        />
       </div>
+
+      {/* النص داخل بطاقة */}
+      <div className="flex-1 md:w-1/2">
+        <div className="bg-[#f2f9f5] p-4 rounded-xl shadow-md h-full flex flex-col justify-center">
+          <h3 className="text-lg md:text-2xl font-semibold">VELORA</h3>
+          <p className="mt-2 text-sm md:text-base text-gray-700">
+            Glow with confidence! Discover your natural radiance and shine every day.
+          </p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+
+
+
     </div>
   </div>
 </section>
 
+    {/* =================  7المنتجات العرض  ================= */}
 
-
-      <section className="py-10 bg-gray-50" style={{ backgroundColor: "#f2f9f5" }}>
-  <div className="social-image-container py-5 px-5 mx-auto">
-    <div className="flex flex-wrap justify-center gap-4">
-      {socials.map((img, index) => (
+      <section className="py-10 bg-gray-50" >
+        <div className="social-image-container py-5 px-5 mx-auto" style={{ backgroundColor: "#f2f9f5" }}>
+         <div className="flex flex-wrap justify-center gap-4">
+        {socials.map((img, index) => (
         <div
           key={index}
           className="relative overflow-hidden group w-11/12 sm:w-5/12 md:w-1/4 lg:w-1/6 max-w-[240px] border border-gray-200 rounded-md"
@@ -594,13 +602,64 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
   </div>
       </section>
     {/* =================  المنتجات الاول  ================= */}
-       
-      {/* ================= New Arrivals ================= */}
+        <section className="py-8" style={{ backgroundColor: "#f2f9f5" }}>
+  <div className="container mx-auto px-4">
+
+    {/* عنوان القسم */}
+    <div className="text-center mb-8">
+      <h2 className="text-3xl md:text-4xl font-semibold text-[#154734]">
+        Featured Products
+      </h2>
+      <p className="mt-4 text-[#333333]">Get the skin you want to feel</p>
+    </div>
+
+    {/* أول 6 منتجات */}
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+      {products.slice(0, 6).map((p) => (
+        <div
+          key={p.id}
+          className="bg-[#f2f9f5] rounded-xl overflow-hidden relative"
+        >
+          <img
+            src={p.images[0]}
+            alt={p.name}
+            className="w-full h-40 object-contain"
+          />
+          <div className="p-4 text-center">
+            <h3 className="text-lg font-medium text-[#154734]">{p.name}</h3>
+            <span className="block mt-1 text-lg font-semibold">${p.price}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* باقي المنتجات 4 في كل صف */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {products.slice(6).map((p) => (
+        <div
+          key={p.id}
+          className="bg-[#f2f9f5] rounded-xl overflow-hidden relative"
+        >
+          <img
+            src={p.images[0]}
+            alt={p.name}
+            className="w-full h-40 object-contain"
+          />
+          <div className="p-4 text-center">
+            <h3 className="text-lg font-medium text-[#154734]">{p.name}</h3>
+            <span className="block mt-1 text-lg font-semibold">${p.price}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+    
      
 
       {/* ================= Newsletter ================= */}
     <section
-  className="py-16 text-primary-foreground bg-cover bg-center relative"
+  className="py-20 text-primary-foreground bg-cover bg-center relative"
   style={{
     backgroundImage: `url(${banner2})`,
   }}
@@ -609,16 +668,16 @@ const scrollStep = cardWidth + gap; // عرض البطاقة تقريباً
   <div className="absolute inset-0 bg-black/50" />
 
   <div className="container mx-auto px-2 text-center relative z-10">
-    <h2 className="text-3xl font-semibold mb-2">Subscribe to Our Newsletter</h2>
-    <form onSubmit={handleNewsletter} className="max-w-md mx-auto flex gap-2">
+    <h2 className="text-3xl font-semibold mb-10 " >Subscribe to Our Newsletter</h2>
+    <form onSubmit={handleNewsletter} className="max-w-md mx-auto flex gap-10 ">
       <input
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="flex-1 px-4 py-3 rounded-lg font-semibold"
+        className="flex-1 px-4 py-3 rounded-lg font-semibold "
         placeholder="Enter your email"
       />
-      <button className="bg-orange-300 px-2 py-2 rounded-lg hover:bg-orange-600 transition">
-        Subscribe
+      <button className="bg-[#154734] px-9 py-2 rounded-lg hover:bg-orange-600 transition text-[#fffff]">
+        Subsc
       </button>
     </form>
   </div>
